@@ -5,6 +5,8 @@
  */
 package frames;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.table.*;
 
 /**
@@ -19,6 +21,11 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
+        table.setFillsViewportHeight(true);
+        this.getContentPane().setBackground(Color.WHITE);
+        
+        JTableHeader header = table.getTableHeader();
+        header.setBorder(BorderFactory.createLineBorder(Color.WHITE));
     }
 
     /**
@@ -32,6 +39,8 @@ public class Main extends javax.swing.JFrame {
 
         pnlBack = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
         pnlSide = new javax.swing.JPanel();
         pnlRadio = new javax.swing.JPanel();
         rdQuadraticCenter = new javax.swing.JRadioButton();
@@ -51,17 +60,64 @@ public class Main extends javax.swing.JFrame {
         btnRun = new javax.swing.JButton();
         sprA = new javax.swing.JSeparator();
         lblIcon = new javax.swing.JLabel();
-        scroll = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setTitle("Generador de Número Random");
+        setBackground(new java.awt.Color(1, 1, 1));
         setResizable(false);
 
         pnlBack.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBack.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         lblTitle.setFont(new java.awt.Font("Skia", 1, 36)); // NOI18N
         lblTitle.setText("Generador de números random");
+
+        scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+        table.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Xn", "Generador", "Operación", "No Aleatorio", "Ri"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        scroll.setViewportView(table);
+
+        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
+        pnlBack.setLayout(pnlBackLayout);
+        pnlBackLayout.setHorizontalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackLayout.createSequentialGroup()
+                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBackLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBackLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        pnlBackLayout.setVerticalGroup(
+            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(lblTitle)
+                .addGap(18, 18, 18)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         pnlSide.setBackground(new java.awt.Color(41, 45, 49));
 
@@ -246,7 +302,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(sprA, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(7, 7, 7))
                             .addComponent(sprB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 19, Short.MAX_VALUE))
+                        .addGap(0, 8, Short.MAX_VALUE))
                     .addGroup(pnlSideLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,62 +328,19 @@ public class Main extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
-        table.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Xn", "Generador", "Operación", "No Aleatorio", "Ri"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        table.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        scroll.setViewportView(table);
-
-        javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
-        pnlBack.setLayout(pnlBackLayout);
-        pnlBackLayout.setHorizontalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackLayout.createSequentialGroup()
-                .addComponent(pnlSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBackLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlBackLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        pnlBackLayout.setVerticalGroup(
-            pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblTitle)
-                .addGap(18, 18, 18)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addComponent(pnlSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(pnlSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -418,7 +431,7 @@ public class Main extends javax.swing.JFrame {
             txtC.setVisible(true);
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0);
-            for (int count = 1; count <= 30; count++) {
+            for (int count = 1; count <= 60; count++) {
                 model.addRow(new Object[] { "c", "c", "c","c", "c", "c" });
             }
         }
