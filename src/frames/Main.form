@@ -56,7 +56,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="699" max="-2" attributes="0"/>
+                          <Component id="scroll" min="-2" pref="699" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -69,7 +69,7 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="573" max="-2" attributes="0"/>
+                  <Component id="scroll" min="-2" pref="573" max="-2" attributes="0"/>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
               <Component id="pnlSide" alignment="0" max="32767" attributes="0"/>
@@ -117,7 +117,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="pnlText" alignment="1" max="32767" attributes="0"/>
                                   <Component id="pnlRadio" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -138,7 +138,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="sprB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnRun" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -197,6 +197,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Centros de los cuadrados"/>
                   </Properties>
                   <Events>
@@ -249,7 +250,7 @@
             </Container>
             <Component class="javax.swing.JSeparator" name="sprB">
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="pnlText">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="31" green="2d" red="29" type="rgb"/>
@@ -419,23 +420,23 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="scroll">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="table">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Sinhala MN" size="14" style="0"/>
+                  <Font name="Arial" size="24" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="5" rowCount="1">
                     <Column editable="true" title="Xn" type="java.lang.Object"/>
                     <Column editable="true" title="Generador" type="java.lang.Object"/>
-                    <Column editable="true" title="Operaci&#xf3;n" type="java.lang.Object"/>
+                    <Column editable="false" title="Operaci&#xf3;n" type="java.lang.Object"/>
                     <Column editable="true" title="No Aleatorio" type="java.lang.Object"/>
                     <Column editable="true" title="Ri" type="java.lang.Object"/>
                   </Table>
