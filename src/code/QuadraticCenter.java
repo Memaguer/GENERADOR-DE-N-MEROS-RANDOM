@@ -13,7 +13,7 @@ public class QuadraticCenter {
     private boolean isOnArray(long x) {
         boolean flag = false;
         for (int i = 0; i < result.length; i++) {
-            if (result[i][3] != null && Integer.parseInt(result[i][3]) == x) {
+            if (Long.parseLong(result[i][3]) == x) {
                 flag = true;
                 break;
             }

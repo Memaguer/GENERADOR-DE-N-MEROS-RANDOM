@@ -5,7 +5,7 @@
  */
 package frames;
 
-import code.QuadraticCenter;
+import code.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.table.*;
@@ -369,12 +369,6 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(false);
             lblC.setVisible(false);
             txtC.setVisible(false);
-
-            //DefaultTableModel model = (DefaultTableModel) table.getModel();
-            //model.setRowCount(0);
-            //for(String[] row : array) {
-            //  model.addRow(row);
-            //}
         }
     }//GEN-LAST:event_rdQuadraticCenterActionPerformed
 
@@ -389,12 +383,6 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(false);
             txtC.setVisible(false);
-
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
-            for (int count = 1; count <= 30; count++) {
-                model.addRow(new Object[]{"b", "b", "b", "b", "b", "b"});
-            }
         }
     }//GEN-LAST:event_rdMultiplicativeGeneratorActionPerformed
 
@@ -407,35 +395,30 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
+        long x = Long.parseLong(txtX.getText());
+        long a = Long.parseLong(txtA.getText());
+        long c = Long.parseLong(txtC.getText());
+        long m = Long.parseLong(txtM.getText());
+        
         if (rdQuadraticCenter.isSelected()) {
-            long seed = Long.parseLong(txtX.getText());
-            QuadraticCenter quadratic = new QuadraticCenter(seed);
+            QuadraticCenter quadratic = new QuadraticCenter(x);
             quadratic.calculate();
             array = quadratic.getArray();
         }
         if (rdMultiplicativeGenerator.isSelected()) {
-            array = new String [60][5];
-            for(int i = 0; i<array.length; i++){
-                for(int j = 0; j<array[i].length; j++){
-                    array[i][j] = i + j + "";
-                }
-            }
+            Congruential mgenerator = new Congruential(x, a, m);
+            mgenerator.calculate();
+            array = mgenerator.getArray();
         }
         if (rdCongruential.isSelected()) {
-            array = new String [60][5];
-            for(int i = 0; i<array.length; i++){
-                for(int j = 0; j<array[i].length; j++){
-                    array[i][j] = i + j + "";
-                }
-            }
+            Congruential congruential = new Congruential(x, a, c, m);
+            congruential.calculate();
+            array = congruential.getArray();
         }
         if (rdMixedCongruential.isSelected()) {
-            array = new String [60][5];
-            for(int i = 0; i<array.length; i++){
-                for(int j = 0; j<array[i].length; j++){
-                    array[i][j] = i + j + "";
-                }
-            }
+            Congruential cMixed = new Congruential(x, a, c, m);
+            cMixed.calculate();
+            array = cMixed.getArray();
         }
         
         // Modelo para poder imprimir en la tabla
@@ -473,11 +456,6 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
-            for (int count = 60; count > 0; count--) {
-                model.addRow(new Object[]{count, "c", "c", "c", "c", "c"});
-            }
         }
     }//GEN-LAST:event_rdMixedCongruentialActionPerformed
 
