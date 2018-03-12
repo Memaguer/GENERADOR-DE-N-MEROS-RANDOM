@@ -5,6 +5,7 @@
  */
 package frames;
 
+import code.QuadraticCenter;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.table.*;
@@ -21,11 +22,21 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
-        table.setFillsViewportHeight(true);
         this.getContentPane().setBackground(Color.WHITE);
-        
+
+        // ==== table ====
+        table.setFillsViewportHeight(true);
+        table.setEnabled(false);
         JTableHeader header = table.getTableHeader();
         header.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        
+        // ==== text field ====
+        lblM.setVisible(false);
+        txtM.setVisible(false);
+        txtA.setVisible(false);
+        lblA.setVisible(false);
+        lblC.setVisible(false);
+        txtC.setVisible(false);
     }
 
     /**
@@ -93,6 +104,7 @@ public class Main extends javax.swing.JFrame {
         });
         table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         table.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        table.setShowGrid(false);
         scroll.setViewportView(table);
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
@@ -145,7 +157,7 @@ public class Main extends javax.swing.JFrame {
 
         rdCongruential.setFont(new java.awt.Font("Sinhala Sangam MN", 0, 14)); // NOI18N
         rdCongruential.setForeground(new java.awt.Color(255, 255, 255));
-        rdCongruential.setText("Congriencial");
+        rdCongruential.setText("Congruencial");
         rdCongruential.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdCongruentialActionPerformed(evt);
@@ -347,7 +359,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rdQuadraticCenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdQuadraticCenterActionPerformed
-        if(rdQuadraticCenter.isSelected()){
+        if (rdQuadraticCenter.isSelected()) {
             rdMultiplicativeGenerator.setSelected(false);
             rdCongruential.setSelected(false);
             rdMixedCongruential.setSelected(false);
@@ -357,17 +369,17 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(false);
             lblC.setVisible(false);
             txtC.setVisible(false);
-            
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
-            for (int count = 1; count <= 30; count++) {
-                model.addRow(new Object[] { "a", "a", "a","a", "a", "a" });
-            }
+
+            //DefaultTableModel model = (DefaultTableModel) table.getModel();
+            //model.setRowCount(0);
+            //for(String[] row : array) {
+            //  model.addRow(row);
+            //}
         }
     }//GEN-LAST:event_rdQuadraticCenterActionPerformed
 
     private void rdMultiplicativeGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdMultiplicativeGeneratorActionPerformed
-        if(rdMultiplicativeGenerator.isSelected()){
+        if (rdMultiplicativeGenerator.isSelected()) {
             rdQuadraticCenter.setSelected(false);
             rdCongruential.setSelected(false);
             rdMixedCongruential.setSelected(false);
@@ -377,11 +389,11 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(false);
             txtC.setVisible(false);
-            
+
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0);
             for (int count = 1; count <= 30; count++) {
-                model.addRow(new Object[] { "b", "b", "b","b", "b", "b" });
+                model.addRow(new Object[]{"b", "b", "b", "b", "b", "b"});
             }
         }
     }//GEN-LAST:event_rdMultiplicativeGeneratorActionPerformed
@@ -395,11 +407,49 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
-        // TODO add your handling code here:
+        if (rdQuadraticCenter.isSelected()) {
+            long seed = Long.parseLong(txtX.getText());
+            QuadraticCenter quadratic = new QuadraticCenter(seed);
+            quadratic.calculate();
+            array = quadratic.getArray();
+        }
+        if (rdMultiplicativeGenerator.isSelected()) {
+            array = new String [60][5];
+            for(int i = 0; i<array.length; i++){
+                for(int j = 0; j<array[i].length; j++){
+                    array[i][j] = i + j + "";
+                }
+            }
+        }
+        if (rdCongruential.isSelected()) {
+            array = new String [60][5];
+            for(int i = 0; i<array.length; i++){
+                for(int j = 0; j<array[i].length; j++){
+                    array[i][j] = i + j + "";
+                }
+            }
+        }
+        if (rdMixedCongruential.isSelected()) {
+            array = new String [60][5];
+            for(int i = 0; i<array.length; i++){
+                for(int j = 0; j<array[i].length; j++){
+                    array[i][j] = i + j + "";
+                }
+            }
+        }
+        
+        // Modelo para poder imprimir en la tabla
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        // Elimina datos anteriores de la tabala
+        model.setRowCount(0);
+        // Imprime resultado en la tabla
+        for (String[] row : array) {
+            model.addRow(row);
+        }
     }//GEN-LAST:event_btnRunActionPerformed
 
     private void rdCongruentialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdCongruentialActionPerformed
-        if(rdCongruential.isSelected()){
+        if (rdCongruential.isSelected()) {
             rdQuadraticCenter.setSelected(false);
             rdMultiplicativeGenerator.setSelected(false);
             rdMixedCongruential.setSelected(false);
@@ -409,17 +459,11 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
-            
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
-            for (int count = 1; count <= 30; count++) {
-                model.addRow(new Object[] { "a", "a", "a","a", "a", "a" });
-            }
         }
     }//GEN-LAST:event_rdCongruentialActionPerformed
 
     private void rdMixedCongruentialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdMixedCongruentialActionPerformed
-        if(rdMixedCongruential.isSelected()){
+        if (rdMixedCongruential.isSelected()) {
             rdQuadraticCenter.setSelected(false);
             rdMultiplicativeGenerator.setSelected(false);
             rdCongruential.setSelected(false);
@@ -431,8 +475,8 @@ public class Main extends javax.swing.JFrame {
             txtC.setVisible(true);
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0);
-            for (int count = 1; count <= 60; count++) {
-                model.addRow(new Object[] { "c", "c", "c","c", "c", "c" });
+            for (int count = 60; count > 0; count--) {
+                model.addRow(new Object[]{count, "c", "c", "c", "c", "c"});
             }
         }
     }//GEN-LAST:event_rdMixedCongruentialActionPerformed
@@ -471,8 +515,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
-    DefaultTableModel model;
+    // Varibles declaration
+    String array[][];
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRun;
     private javax.swing.JLabel lblA;
