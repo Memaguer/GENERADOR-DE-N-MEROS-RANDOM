@@ -91,17 +91,9 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Xn", "Generador", "Operación", "No Aleatorio", "Ri"
+                "n", "Generador", "Operación", "No Aleatorio", "Ri"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         table.setSelectionBackground(new java.awt.Color(255, 255, 255));
         table.setShowGrid(false);
