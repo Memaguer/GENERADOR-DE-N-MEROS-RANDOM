@@ -9,6 +9,8 @@ import code.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.table.*;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,6 +18,18 @@ import javax.swing.table.*;
  */
 public class Main extends javax.swing.JFrame {
 
+    /**
+     * Method para detectar si son long o no
+     */
+    private boolean isNumber(String number) {
+      try {
+        Long.parseLong(number);
+        return true;
+      } catch (NumberFormatException e) {
+         return false;
+      }
+   }
+    
     /**
      * Creates new form Main
      */
@@ -380,37 +394,72 @@ public class Main extends javax.swing.JFrame {
 
     private void txtAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtAActionPerformed
 
     private void txtCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtCActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
-        long x = Long.parseLong(txtX.getText());
-        long a = Long.parseLong(txtA.getText());
-        long c = Long.parseLong(txtC.getText());
-        long m = Long.parseLong(txtM.getText());
+        //Variable para detectar si es numero o no
+        //boolean isNumber = false;
+        long x=-1, a=-1, c=-1, m=-1;
+        if(isNumber(txtX.getText())){
+            x = Long.parseLong(txtX.getText());
+        } else {
+            JFrame frame = new JFrame("Alerta");
+            JOptionPane.showMessageDialog(frame, "x no es un número");
+        }
+        if(isNumber(txtA.getText())){
+            a = Long.parseLong(txtA.getText());
+        } else {
+            JFrame frame = new JFrame("Alerta");
+            JOptionPane.showMessageDialog(frame, "a no es un número");
+        }
+        if(isNumber(txtC.getText())){
+            c = Long.parseLong(txtC.getText());
+        } else {
+            JFrame frame = new JFrame("Alerta");
+            JOptionPane.showMessageDialog(frame, "c no es un número");
+        }
+        if(isNumber(txtM.getText())){
+            m = Long.parseLong(txtM.getText());
+        } else {
+            JFrame frame = new JFrame("Alerta");
+            JOptionPane.showMessageDialog(frame, "m no es un número");
+        }
         
         if (rdQuadraticCenter.isSelected()) {
-            QuadraticCenter quadratic = new QuadraticCenter(x);
-            quadratic.calculate();
-            array = quadratic.getArray();
+            //QuadraticCenter quadratic;
+            //System.out.println(isNumber(Long.toString(x)));
+            if(x > -1){
+                QuadraticCenter quadratic = new QuadraticCenter(x);
+                quadratic.calculate();
+                array = quadratic.getArray();
+            }
         }
         if (rdMultiplicativeGenerator.isSelected()) {
-            Congruential mgenerator = new Congruential(x, a, m);
-            mgenerator.calculate();
-            array = mgenerator.getArray();
+            if(x>-1 && a>-1 && m>-1){
+                Congruential mgenerator = new Congruential(x, a, m);
+                mgenerator.calculate();
+                array = mgenerator.getArray();   
+            }
         }
         if (rdCongruential.isSelected()) {
-            Congruential congruential = new Congruential(x, a, c, m);
-            congruential.calculate();
-            array = congruential.getArray();
+            if(x>-1 && a>-1 && m>-1 && c>-1){
+                Congruential congruential = new Congruential(x, a, c, m);
+                congruential.calculate();
+                array = congruential.getArray();
+            }
         }
         if (rdMixedCongruential.isSelected()) {
-            Congruential cMixed = new Congruential(x, a, c, m);
-            cMixed.calculate();
-            array = cMixed.getArray();
+            if(x>-1 && a>-1 && m>-1 && c>-1){
+                Congruential cMixed = new Congruential(x, a, c, m);
+                cMixed.calculate();
+                array = cMixed.getArray();
+            }
         }
         
         // Modelo para poder imprimir en la tabla
@@ -418,8 +467,10 @@ public class Main extends javax.swing.JFrame {
         // Elimina datos anteriores de la tabala
         model.setRowCount(0);
         // Imprime resultado en la tabla
-        for (String[] row : array) {
-            model.addRow(row);
+        if(array != null){
+            for (String[] row : array) {
+                model.addRow(row);
+            }
         }
     }//GEN-LAST:event_btnRunActionPerformed
 
