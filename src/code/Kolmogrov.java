@@ -19,22 +19,9 @@ public class Kolmogrov {
         this.data = data;
     }
     
-    private boolean isOnArray(long x) {
-        boolean flag = false;
-        for (int i = 0; i < result.length; i++) {
-            if (Long.parseLong(result[i][3]) == x) {
-                flag = true;
-                break;
-            }
-        }
-        return flag;
-    }
-    
-    /*public void calculate() {
-        boolean flag = true;
-        pushResult(0, 0, seed);
-        long currentX = seed;
-        while (flag) {
+    public void calculate() {
+        int fase = 1;
+        while (fase < quantData) {
             long prevX = currentX;
             long power = (long) Math.pow(prevX, 2);
             currentX = getCenterNumbers(power);
@@ -43,5 +30,5 @@ public class Kolmogrov {
             }
             pushResult(prevX, power, currentX);
         }
-    }*/
+    }
 }
