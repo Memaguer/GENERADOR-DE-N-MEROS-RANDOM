@@ -410,55 +410,71 @@ public class Main extends javax.swing.JFrame {
             x = Long.parseLong(txtX.getText());
         } else {
             JFrame frame = new JFrame("Alerta");
-            JOptionPane.showMessageDialog(frame, "x no es un número");
+            JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                    + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
         if(isNumber(txtA.getText())){
             a = Long.parseLong(txtA.getText());
         } else {
             JFrame frame = new JFrame("Alerta");
-            JOptionPane.showMessageDialog(frame, "a no es un número");
+            JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                    + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
         if(isNumber(txtC.getText())){
             c = Long.parseLong(txtC.getText());
         } else {
             JFrame frame = new JFrame("Alerta");
-            JOptionPane.showMessageDialog(frame, "c no es un número");
+            JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                    + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
         if(isNumber(txtM.getText())){
             m = Long.parseLong(txtM.getText());
         } else {
             JFrame frame = new JFrame("Alerta");
-            JOptionPane.showMessageDialog(frame, "m no es un número");
+            JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                    + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
         
         if (rdQuadraticCenter.isSelected()) {
             //QuadraticCenter quadratic;
             //System.out.println(isNumber(Long.toString(x)));
-            if(x > -1){
+            if(!(x < 0)){
                 QuadraticCenter quadratic = new QuadraticCenter(x);
                 quadratic.calculate();
                 array = quadratic.getArray();
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "x no puede ser negativo");
             }
         }
         if (rdMultiplicativeGenerator.isSelected()) {
-            if(x>-1 && a>-1 && m>-1){
+            if(!(x < 0) && !(a < 0) && !(m < 0)){
                 Congruential mgenerator = new Congruential(x, a, m);
                 mgenerator.calculate();
                 array = mgenerator.getArray();   
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "Estás ingresando un número negativo.");
             }
         }
         if (rdCongruential.isSelected()) {
-            if(x>-1 && a>-1 && m>-1 && c>-1){
+            if(!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0)){
                 Congruential congruential = new Congruential(x, a, c, m);
                 congruential.calculate();
                 array = congruential.getArray();
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "Estás ingresando un número negativo.");
             }
         }
         if (rdMixedCongruential.isSelected()) {
-            if(x>-1 && a>-1 && m>-1 && c>-1){
+            if(!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0)){
                 Congruential cMixed = new Congruential(x, a, c, m);
                 cMixed.calculate();
                 array = cMixed.getArray();
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "Estás ingresando un número negativo.");
             }
         }
         
