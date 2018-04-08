@@ -1,5 +1,8 @@
 package code;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Congruential {
 
     private long x, a, c, m;
@@ -26,7 +29,12 @@ public class Congruential {
         pushResult(0, x);
         while (flag) {
             long prevX = x;
-            x = (a * prevX + c) % m;
+            if(m>0){
+                x = (a * prevX + c) % m;
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "m no puede ser 0");
+            }
             if (isOnArray(x)) {
                 flag = false;
             }
