@@ -22,13 +22,6 @@ public class Kolmogrov {
     public void calculate() {
         int fase = 1;
         while (fase < quantData) {
-            long prevX = currentX;
-            long power = (long) Math.pow(prevX, 2);
-            currentX = getCenterNumbers(power);
-            if (isOnArray(currentX)) {
-                flag = false;
-            }
-            pushResult(prevX, power, currentX);
         }
     }
 }
