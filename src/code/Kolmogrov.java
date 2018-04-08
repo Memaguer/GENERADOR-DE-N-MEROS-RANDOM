@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package code;
-
+import org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest;
 /**
  *
  * @author Emiliano Cervantes
