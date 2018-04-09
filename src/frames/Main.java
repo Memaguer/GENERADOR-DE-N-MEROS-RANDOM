@@ -18,6 +18,7 @@ import javax.swing.JFrame;
  */
 public class Main extends javax.swing.JFrame {
     Congruential congruential;
+    ChiSquare chiSquare;
     /**
      * Method para detectar si son long o no
      */
@@ -678,7 +679,9 @@ public class Main extends javax.swing.JFrame {
         // ####### CHI CUADRADA #######
         String message = getAlphaValidationMessage();
         if(message == null){
-            //ChiSquare
+            double alpha = Double.parseDouble(txtAlpha.getText());
+            String result = congruential.chiTest(alpha);
+            JOptionPane.showMessageDialog(null, result);
         }
         else{
             JOptionPane.showMessageDialog(null, message);
