@@ -678,7 +678,7 @@ public class Main extends javax.swing.JFrame {
         // ####### CHI CUADRADA #######
         String message = getAlphaValidationMessage();
         if(message == null){
-            // #### PROGRAMA AQUÍ #####
+            //ChiSquare
         }
         else{
             JOptionPane.showMessageDialog(null, message);
