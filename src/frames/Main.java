@@ -17,13 +17,22 @@ import javax.swing.JFrame;
  * @author MemoBG
  */
 public class Main extends javax.swing.JFrame {
-
+    Congruential congruential;
     /**
      * Method para detectar si son long o no
      */
     private boolean isNumber(String number) {
         try {
             Long.parseLong(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    private boolean isFloat(String number) {
+        try {
+            Double.parseDouble(number);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -448,6 +457,9 @@ public class Main extends javax.swing.JFrame {
             rdQuadraticCenter.setSelected(false);
             rdCongruential.setSelected(false);
             rdMixedCongruential.setSelected(false);
+            
+            congruential = null;
+            
             lblM.setVisible(true);
             txtM.setVisible(true);
             txtA.setVisible(true);
@@ -535,9 +547,9 @@ public class Main extends javax.swing.JFrame {
         }
         if (rdMultiplicativeGenerator.isSelected()) {
             if (!(x < 0) && !(a < 0) && !(m < 0) && (flagx || flaga || flagm)) {
-                Congruential mgenerator = new Congruential(x, a, m);
-                mgenerator.calculate();
-                array = mgenerator.getArray();
+                congruential = new Congruential(x, a, m);
+                congruential.calculate();
+                array = congruential.getArray();
                 lblAlpha.setVisible(true);
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
@@ -550,7 +562,7 @@ public class Main extends javax.swing.JFrame {
         }
         if (rdCongruential.isSelected()) {
             if (!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc) {
-                Congruential congruential = new Congruential(x, a, c, m);
+                congruential = new Congruential(x, a, c, m);
                 congruential.calculate();
                 array = congruential.getArray();
                 lblAlpha.setVisible(true);
@@ -565,11 +577,11 @@ public class Main extends javax.swing.JFrame {
         }
         if (rdMixedCongruential.isSelected()) {
             if (!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc) {
-                Congruential cMixed = new Congruential(x, a, c, m);
+                congruential = new Congruential(x, a, c, m);
                 JFrame frame = new JFrame("Alerta");
-                JOptionPane.showMessageDialog(frame, cMixed.hullDobell());
-                cMixed.calculate();
-                array = cMixed.getArray();
+                JOptionPane.showMessageDialog(frame, congruential.hullDobell());
+                congruential.calculate();
+                array = congruential.getArray();
                 lblAlpha.setVisible(true);
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
@@ -598,6 +610,9 @@ public class Main extends javax.swing.JFrame {
             rdQuadraticCenter.setSelected(false);
             rdMultiplicativeGenerator.setSelected(false);
             rdMixedCongruential.setSelected(false);
+            
+            congruential = null;
+            
             lblM.setVisible(true);
             txtM.setVisible(true);
             txtA.setVisible(true);
@@ -627,6 +642,9 @@ public class Main extends javax.swing.JFrame {
             rdQuadraticCenter.setSelected(false);
             rdMultiplicativeGenerator.setSelected(false);
             rdCongruential.setSelected(false);
+            
+            congruential = null;
+            
             lblM.setVisible(true);
             txtM.setVisible(true);
             txtA.setVisible(true);
@@ -674,6 +692,16 @@ public class Main extends javax.swing.JFrame {
         String message = getAlphaValidationMessage();
         if(message == null){
             // #### PROGRAMA AQUÍ #####
+            double alpha = 0;
+            if (isFloat(txtAlpha.getText()) && congruential != null) {
+                alpha = Double.parseDouble(txtAlpha.getText());
+                String result = congruential.kolmoTest(alpha);
+                JOptionPane.showMessageDialog(null, result);
+            } else {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números decimales positivos."
+                        + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, message);

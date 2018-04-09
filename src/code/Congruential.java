@@ -1,10 +1,12 @@
 package code;
+//import org.apache.commons.math3.stat.inference.*;
+//import org.apache.commons.math3.distribution.*;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Congruential {
-
     private long x, a, c, m;
     private String[][] result, resultTemp;
 
@@ -72,39 +74,16 @@ public class Congruential {
     }
 
     public String hullDobell() {
-        boolean firstRule = false;
-        boolean secondRule = false;
         String message = "No es periodo completo.";
-        long q = a - 1;
-
-        // ####### FIRST RULE #######
+        
         if (getGCD(c, m) == 1) {
-            firstRule = true;
-        }
-
-        // ####### SECOND RULE #######
-        if (firstRule) {
-            long count = q;
-            while (count > 1) {
-                if (q % count == 0) {
-                    if (m % count == 0) {
-                        secondRule = true;
-                    } else {
-                        secondRule = false;
-                        count = 1;
-                    }
+            long q = a - 1;
+            if (a % q == 1 % q) {
+                if (a % 4 == 1 % 4) {
+                    message = "Es periodo completo.";
                 }
-                count--;
             }
         }
-
-        // ####### THIRD RULE #######
-        if (secondRule) {
-            if (q % 4 == 0 && m % 4 == 0) {
-                message = "Es periodo completo.";
-            }
-        }
-
         return message;
     }
 
@@ -138,5 +117,36 @@ public class Congruential {
             System.out.println();
         }
     }
-
+    
+    public double[] getColumn(String[][] array, int index){
+        double[] column = new double[array.length-1];
+        for(int i = 0; i < column.length; i++){
+           column[i] = Double.valueOf(array[i+1][index]);
+        }
+        return column;
+    }
+    
+    public String kolmoTest(double alpha){
+        double[] data = getColumn(result, 4);
+        //double[] data = {0.02, 0.0356, 0.1355, 0.5011, 1.514, 1.6055, 2.3710, 3.2225, 8.8836, 19.0123};
+        Arrays.sort(data);
+        double mean = 0;
+        for (double i : data){
+            mean += i;
+        }
+        mean = mean / data.length;
+        //ExponentialDistribution exp = new ExponentialDistribution(mean);
+        ExponentialFunction ex = new ExponentialFunction(data);
+        ex.setData();
+        KolmogorovTest km = new KolmogorovTest(ex.getData(), alpha);
+        double empiricalD = km.empiricalAlpha;
+        double finalD = km.finalD;
+        
+        if(finalD < empiricalD){
+            return "Alfa = "+alpha+"\nD calculado = "+finalD+"\nD empírico = "+empiricalD+"\nLa hipótesis nula no se rechaza";
+        }else{
+            return "D calculado = "+finalD+"\nD empírico = "+empiricalD+"\nLa hipótesis nula se rechaza";
+        }
+    }
+    
 }
