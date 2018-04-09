@@ -1,5 +1,6 @@
 *.class
 *.properties
+*.DS_Store
 /nbproject/private/
 /build/
 /dist/

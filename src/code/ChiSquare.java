@@ -27,7 +27,7 @@ public class ChiSquare {
     
     public void calculate(){
         int numOfData, classesCeil;
-        double max, min, numOfClasses, classRange, classValue, classValue2, mu=0, lambda, FEi;
+        double max, min, numOfClasses, classRange, classValue, classValue2, mu=0, lambda, FEi, FEOi;
         Arrays.sort(observedData);
         min = observedData[0];
         classValue = min;
@@ -52,12 +52,20 @@ public class ChiSquare {
         mu=mu/observedData.length;
         lambda=1/mu;
         
+        //Revertir para la 1er k
+        classValue = min;
+        classValue2 = classValue + classRange;
         for(int i = 1; i<=libertyDegrees;i++){
             int count = search(classValue,classValue2);
             FEi = integral(classValue, classValue2, lambda);
-            pushResult(i, classValue,classValue2,count,count/numOfData);
+            FEOi = Math.pow(FEi-(count/numOfData),2)/FEi;
+            pushResult(i, classValue,classValue2,count,count/numOfData, FEi, FEOi);
             classValue=classValue2;
-            classValue2+=classRange;
+            if(i==libertyDegrees){
+                classValue2 = observedData[observedData.length];
+            } else{
+                classValue2+=classRange;
+            }
         }
         libertyDegrees-=2;
         getTheoreticalH0(alpha);
@@ -135,7 +143,7 @@ public class ChiSquare {
     }
     
     private double integral(double max, double min, double lambda){
-        double result = -Math.exp(max*lambda)+Math.exp(min*lambda);
+        double result = -Math.exp(-max*lambda)+Math.exp(-min*lambda);
         return result;
     }
     
