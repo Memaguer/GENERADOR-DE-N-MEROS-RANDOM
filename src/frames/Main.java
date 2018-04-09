@@ -51,6 +51,8 @@ public class Main extends javax.swing.JFrame {
         lblA.setVisible(false);
         lblC.setVisible(false);
         txtC.setVisible(false);
+        lblAlpha.setVisible(false);
+        txtAlpha.setVisible(false);
         
         // ==== buttons ====
         btnChiCuadrada.setVisible(false);
@@ -72,6 +74,8 @@ public class Main extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         btnKolmogorov = new javax.swing.JButton();
         btnChiCuadrada = new javax.swing.JButton();
+        lblAlpha = new javax.swing.JLabel();
+        txtAlpha = new javax.swing.JTextField();
         pnlSide = new javax.swing.JPanel();
         pnlRadio = new javax.swing.JPanel();
         rdQuadraticCenter = new javax.swing.JRadioButton();
@@ -128,24 +132,38 @@ public class Main extends javax.swing.JFrame {
         btnChiCuadrada.setForeground(new java.awt.Color(255, 255, 255));
         btnChiCuadrada.setText("Chi-Cuadrada");
 
+        lblAlpha.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        lblAlpha.setText("alpha:");
+
+        txtAlpha.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        txtAlpha.setText("0");
+        txtAlpha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlphaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
         pnlBack.setLayout(pnlBackLayout);
         pnlBackLayout.setHorizontalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackLayout.createSequentialGroup()
-                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackLayout.createSequentialGroup()
-                        .addGap(359, 359, 359)
-                        .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnKolmogorov, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlBackLayout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlBackLayout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(99, 99, 99)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBackLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlBackLayout.createSequentialGroup()
+                                .addComponent(lblAlpha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtAlpha, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnKolmogorov, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         pnlBackLayout.setVerticalGroup(
@@ -154,12 +172,14 @@ public class Main extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(scroll)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKolmogorov, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAlpha)
+                    .addComponent(txtAlpha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pnlSide.setBackground(new java.awt.Color(41, 45, 49));
@@ -274,23 +294,17 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTextLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTextLayout.createSequentialGroup()
-                        .addComponent(lblC)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTextLayout.createSequentialGroup()
-                        .addComponent(lblM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtM, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTextLayout.createSequentialGroup()
-                        .addComponent(lblX)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtX, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTextLayout.createSequentialGroup()
-                        .addComponent(lblA)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblM)
+                    .addComponent(lblX)
+                    .addComponent(lblA)
+                    .addComponent(lblC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtM)
+                    .addComponent(txtA)
+                    .addComponent(txtC)
+                    .addComponent(txtX))
+                .addGap(67, 67, 67))
         );
         pnlTextLayout.setVerticalGroup(
             pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +325,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblC))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         btnRun.setBackground(new java.awt.Color(218, 56, 73));
@@ -366,7 +380,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(sprB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRun, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -400,6 +414,8 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(false);
             lblC.setVisible(false);
             txtC.setVisible(false);
+            lblAlpha.setVisible(false);
+            txtAlpha.setVisible(false);
             btnChiCuadrada.setVisible(false);
             btnKolmogorov.setVisible(false);
         }
@@ -416,8 +432,10 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(false);
             txtC.setVisible(false);
-            btnChiCuadrada.setVisible(true);
-            btnKolmogorov.setVisible(true);
+            lblAlpha.setVisible(false);
+            txtAlpha.setVisible(false);
+            btnChiCuadrada.setVisible(false);
+            btnKolmogorov.setVisible(false);
         }
     }//GEN-LAST:event_rdMultiplicativeGeneratorActionPerformed
 
@@ -489,7 +507,11 @@ public class Main extends javax.swing.JFrame {
             if(!(x < 0) && !(a < 0) && !(m < 0) && (flagx || flaga || flagm)){
                 Congruential mgenerator = new Congruential(x, a, m);
                 mgenerator.calculate();
-                array = mgenerator.getArray();   
+                array = mgenerator.getArray(); 
+                lblAlpha.setVisible(true);
+                txtAlpha.setVisible(true);
+                btnChiCuadrada.setVisible(true);
+                btnKolmogorov.setVisible(true);
             } else {
                 if (x < 0 || a < 0 || m < 0) {
                     JFrame frame = new JFrame("Alerta");
@@ -503,6 +525,10 @@ public class Main extends javax.swing.JFrame {
                 Congruential congruential = new Congruential(x, a, c, m);
                 congruential.calculate();
                 array = congruential.getArray();
+                lblAlpha.setVisible(true);
+                txtAlpha.setVisible(true);
+                btnChiCuadrada.setVisible(true);
+                btnKolmogorov.setVisible(true);
             } else {
                 if (x < 0 || a < 0 || m < 0 || c < 0) {
                     JFrame frame = new JFrame("Alerta");
@@ -518,6 +544,10 @@ public class Main extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(frame, cMixed.hullDobell());
                 cMixed.calculate();
                 array = cMixed.getArray();
+                lblAlpha.setVisible(true);
+                txtAlpha.setVisible(true);
+                btnChiCuadrada.setVisible(true);
+                btnKolmogorov.setVisible(true);
             } else {
                 if (x < 0 || a < 0 || m < 0 || c < 0) {
                     JFrame frame = new JFrame("Alerta");
@@ -550,8 +580,10 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
-            btnChiCuadrada.setVisible(true);
-            btnKolmogorov.setVisible(true);
+            lblAlpha.setVisible(false);
+            txtAlpha.setVisible(false);
+            btnChiCuadrada.setVisible(false);
+            btnKolmogorov.setVisible(false);
         }
     }//GEN-LAST:event_rdCongruentialActionPerformed
 
@@ -566,10 +598,16 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
-            btnChiCuadrada.setVisible(true);
-            btnKolmogorov.setVisible(true);
+            lblAlpha.setVisible(false);
+            txtAlpha.setVisible(false);
+            btnChiCuadrada.setVisible(false);
+            btnKolmogorov.setVisible(false);
         }
     }//GEN-LAST:event_rdMixedCongruentialActionPerformed
+
+    private void txtAlphaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlphaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlphaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,6 +651,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnKolmogorov;
     private javax.swing.JButton btnRun;
     private javax.swing.JLabel lblA;
+    private javax.swing.JLabel lblAlpha;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblM;
@@ -631,6 +670,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator sprB;
     private javax.swing.JTable table;
     private javax.swing.JTextField txtA;
+    private javax.swing.JTextField txtAlpha;
     private javax.swing.JTextField txtC;
     private javax.swing.JTextField txtM;
     private javax.swing.JTextField txtX;
