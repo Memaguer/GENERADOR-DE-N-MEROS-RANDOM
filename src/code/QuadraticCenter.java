@@ -38,11 +38,19 @@ public class QuadraticCenter {
 
     private int getCenterNumbers(long result) {
         String resultString = result + "";
-        while (resultString.length() < 6) {
-            resultString = "0" + resultString;
+        while (resultString.length() < 4) {
+          resultString = "0" + resultString;
         }
         String reverse = new StringBuffer(resultString).reverse().toString();
-        resultString = reverse.substring(2, 6);
+        if(reverse.length()>6){
+            resultString = reverse.substring(2, 6);
+        }
+        else if (reverse.length()>4){
+            resultString = reverse.substring(1, 5);
+        }
+        else{
+            resultString = reverse.substring(0, 4);
+        }
         resultString = new StringBuffer(resultString).reverse().toString();
         return Integer.parseInt(resultString);
     }

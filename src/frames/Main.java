@@ -51,6 +51,10 @@ public class Main extends javax.swing.JFrame {
         lblA.setVisible(false);
         lblC.setVisible(false);
         txtC.setVisible(false);
+        
+        // ==== buttons ====
+        btnChiCuadrada.setVisible(false);
+        btnKolmogorov.setVisible(false);
     }
 
     /**
@@ -66,6 +70,8 @@ public class Main extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        btnKolmogorov = new javax.swing.JButton();
+        btnChiCuadrada = new javax.swing.JButton();
         pnlSide = new javax.swing.JPanel();
         pnlRadio = new javax.swing.JPanel();
         rdQuadraticCenter = new javax.swing.JRadioButton();
@@ -110,21 +116,36 @@ public class Main extends javax.swing.JFrame {
         ));
         table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         table.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        table.setShowGrid(false);
         scroll.setViewportView(table);
+
+        btnKolmogorov.setBackground(new java.awt.Color(53, 30, 82));
+        btnKolmogorov.setFont(new java.awt.Font("Sinhala Sangam MN", 0, 14)); // NOI18N
+        btnKolmogorov.setForeground(new java.awt.Color(255, 255, 255));
+        btnKolmogorov.setText("Kolmogorv-Smirnov");
+
+        btnChiCuadrada.setBackground(new java.awt.Color(64, 84, 178));
+        btnChiCuadrada.setFont(new java.awt.Font("Sinhala Sangam MN", 0, 14)); // NOI18N
+        btnChiCuadrada.setForeground(new java.awt.Color(255, 255, 255));
+        btnChiCuadrada.setText("Chi-Cuadrada");
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
         pnlBack.setLayout(pnlBackLayout);
         pnlBackLayout.setHorizontalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackLayout.createSequentialGroup()
-                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pnlBackLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlBackLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(359, 359, 359)
+                        .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnKolmogorov, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlBackLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlBackLayout.createSequentialGroup()
+                            .addGap(81, 81, 81)
+                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         pnlBackLayout.setVerticalGroup(
@@ -133,8 +154,12 @@ public class Main extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(scroll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnKolmogorov, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChiCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pnlSide.setBackground(new java.awt.Color(41, 45, 49));
@@ -341,7 +366,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(sprB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(btnRun, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -375,6 +400,8 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(false);
             lblC.setVisible(false);
             txtC.setVisible(false);
+            btnChiCuadrada.setVisible(false);
+            btnKolmogorov.setVisible(false);
         }
     }//GEN-LAST:event_rdQuadraticCenterActionPerformed
 
@@ -389,6 +416,8 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(false);
             txtC.setVisible(false);
+            btnChiCuadrada.setVisible(true);
+            btnKolmogorov.setVisible(true);
         }
     }//GEN-LAST:event_rdMultiplicativeGeneratorActionPerformed
 
@@ -485,6 +514,8 @@ public class Main extends javax.swing.JFrame {
         if (rdMixedCongruential.isSelected()) {
             if(!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc){
                 Congruential cMixed = new Congruential(x, a, c, m);
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, cMixed.hullDobell());
                 cMixed.calculate();
                 array = cMixed.getArray();
             } else {
@@ -519,6 +550,8 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
+            btnChiCuadrada.setVisible(true);
+            btnKolmogorov.setVisible(true);
         }
     }//GEN-LAST:event_rdCongruentialActionPerformed
 
@@ -533,6 +566,8 @@ public class Main extends javax.swing.JFrame {
             lblA.setVisible(true);
             lblC.setVisible(true);
             txtC.setVisible(true);
+            btnChiCuadrada.setVisible(true);
+            btnKolmogorov.setVisible(true);
         }
     }//GEN-LAST:event_rdMixedCongruentialActionPerformed
 
@@ -574,6 +609,8 @@ public class Main extends javax.swing.JFrame {
     String array[][];
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChiCuadrada;
+    private javax.swing.JButton btnKolmogorov;
     private javax.swing.JButton btnRun;
     private javax.swing.JLabel lblA;
     private javax.swing.JLabel lblC;

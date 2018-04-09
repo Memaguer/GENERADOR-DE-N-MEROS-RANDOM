@@ -29,7 +29,7 @@ public class Congruential {
         pushResult(0, x);
         while (flag) {
             long prevX = x;
-            if(m>0){
+            if (m > 0) {
                 x = (a * prevX + c) % m;
             } else {
                 JFrame frame = new JFrame("Alerta");
@@ -69,6 +69,27 @@ public class Congruential {
             result[size][3] = x + "";
             result[size][4] = "";
         }
+    }
+
+    public String hullDobell() {
+        String message = "No es periodo completo.";
+        
+        if (getGCD(c, m) == 1) {
+            long q = a - 1;
+            if (a % q == 1 % q) {
+                if (a % 4 == 1 % 4) {
+                    message = "Es periodo completo.";
+                }
+            }
+        }
+        return message;
+    }
+
+    public long getGCD(long a0, long b0) {
+        if (b0 == 0) {
+            return a0;
+        }
+        return getGCD(b0, a0 % b0);
     }
 
     private boolean isOnArray(long x) {
