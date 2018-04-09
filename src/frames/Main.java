@@ -22,14 +22,14 @@ public class Main extends javax.swing.JFrame {
      * Method para detectar si son long o no
      */
     private boolean isNumber(String number) {
-      try {
-        Long.parseLong(number);
-        return true;
-      } catch (NumberFormatException e) {
-         return false;
-      }
-   }
-    
+        try {
+            Long.parseLong(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     /**
      * Creates new form Main
      */
@@ -43,7 +43,7 @@ public class Main extends javax.swing.JFrame {
         table.setEnabled(false);
         JTableHeader header = table.getTableHeader();
         header.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        
+
         // ==== text field ====
         lblM.setVisible(false);
         txtM.setVisible(false);
@@ -53,7 +53,10 @@ public class Main extends javax.swing.JFrame {
         txtC.setVisible(false);
         lblAlpha.setVisible(false);
         txtAlpha.setVisible(false);
-        
+
+        // ==== text field ====
+        txtX.setText("");
+
         // ==== buttons ====
         btnChiCuadrada.setVisible(false);
         btnKolmogorov.setVisible(false);
@@ -126,17 +129,27 @@ public class Main extends javax.swing.JFrame {
         btnKolmogorov.setFont(new java.awt.Font("Sinhala Sangam MN", 0, 14)); // NOI18N
         btnKolmogorov.setForeground(new java.awt.Color(255, 255, 255));
         btnKolmogorov.setText("Kolmogorv-Smirnov");
+        btnKolmogorov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKolmogorovActionPerformed(evt);
+            }
+        });
 
         btnChiCuadrada.setBackground(new java.awt.Color(64, 84, 178));
         btnChiCuadrada.setFont(new java.awt.Font("Sinhala Sangam MN", 0, 14)); // NOI18N
         btnChiCuadrada.setForeground(new java.awt.Color(255, 255, 255));
         btnChiCuadrada.setText("Chi-Cuadrada");
+        btnChiCuadrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChiCuadradaActionPerformed(evt);
+            }
+        });
 
         lblAlpha.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         lblAlpha.setText("alpha:");
 
         txtAlpha.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        txtAlpha.setText("0");
+        txtAlpha.setText("0.05");
         txtAlpha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAlphaActionPerformed(evt);
@@ -408,6 +421,7 @@ public class Main extends javax.swing.JFrame {
             rdMultiplicativeGenerator.setSelected(false);
             rdCongruential.setSelected(false);
             rdMixedCongruential.setSelected(false);
+
             lblM.setVisible(false);
             txtM.setVisible(false);
             txtA.setVisible(false);
@@ -418,6 +432,14 @@ public class Main extends javax.swing.JFrame {
             txtAlpha.setVisible(false);
             btnChiCuadrada.setVisible(false);
             btnKolmogorov.setVisible(false);
+
+            // ==== text field ====
+            txtX.setText("");
+
+            // Modelo para poder imprimir en la tabla
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            // Elimina datos anteriores de la tabala
+            model.setRowCount(0);
         }
     }//GEN-LAST:event_rdQuadraticCenterActionPerformed
 
@@ -436,26 +458,36 @@ public class Main extends javax.swing.JFrame {
             txtAlpha.setVisible(false);
             btnChiCuadrada.setVisible(false);
             btnKolmogorov.setVisible(false);
+
+            // ==== text field ====
+            txtX.setText("");
+            txtA.setText("");
+            txtM.setText("");
+
+            // Modelo para poder imprimir en la tabla
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            // Elimina datos anteriores de la tabala
+            model.setRowCount(0);
         }
     }//GEN-LAST:event_rdMultiplicativeGeneratorActionPerformed
 
     private void txtAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtAActionPerformed
 
     private void txtCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtCActionPerformed
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
         //Variable para detectar si es numero o no
         //boolean isNumber = false;
-        long x=0, a=0, c=0, m=0;
+        long x = 0, a = 0, c = 0, m = 0;
         boolean flagx, flaga, flagm, flagc;
         flagx = flaga = flagm = flagc = false;
-        if(isNumber(txtX.getText())){
+        if (isNumber(txtX.getText())) {
             x = Long.parseLong(txtX.getText());
             flagx = true;
         } else {
@@ -463,7 +495,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
                     + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
-        if(isNumber(txtA.getText())){
+        if (isNumber(txtA.getText())) {
             a = Long.parseLong(txtA.getText());
             flaga = true;
         } else {
@@ -471,7 +503,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
                     + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
-        if(isNumber(txtC.getText())){
+        if (isNumber(txtC.getText())) {
             c = Long.parseLong(txtC.getText());
             flagc = true;
         } else {
@@ -479,7 +511,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
                     + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
-        if(isNumber(txtM.getText())){
+        if (isNumber(txtM.getText())) {
             m = Long.parseLong(txtM.getText());
             flagm = true;
         } else {
@@ -487,41 +519,37 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
                     + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
         }
-        
+
         if (rdQuadraticCenter.isSelected()) {
             //QuadraticCenter quadratic;
             //System.out.println(isNumber(Long.toString(x)));
-            if(!(x < 0) && flagx){
+            if (!(x < 0) && flagx) {
                 QuadraticCenter quadratic = new QuadraticCenter(x);
                 quadratic.calculate();
                 array = quadratic.getArray();
-            } else {
-                if(x < 0){
-                    JFrame frame = new JFrame("Alerta");
-                    JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
-                            + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
-                }
+            } else if (x < 0) {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                        + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
             }
         }
         if (rdMultiplicativeGenerator.isSelected()) {
-            if(!(x < 0) && !(a < 0) && !(m < 0) && (flagx || flaga || flagm)){
+            if (!(x < 0) && !(a < 0) && !(m < 0) && (flagx || flaga || flagm)) {
                 Congruential mgenerator = new Congruential(x, a, m);
                 mgenerator.calculate();
-                array = mgenerator.getArray(); 
+                array = mgenerator.getArray();
                 lblAlpha.setVisible(true);
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
                 btnKolmogorov.setVisible(true);
-            } else {
-                if (x < 0 || a < 0 || m < 0) {
-                    JFrame frame = new JFrame("Alerta");
-                    JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
-                            + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
-                }
+            } else if (x < 0 || a < 0 || m < 0) {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                        + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
             }
         }
         if (rdCongruential.isSelected()) {
-            if(!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc){
+            if (!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc) {
                 Congruential congruential = new Congruential(x, a, c, m);
                 congruential.calculate();
                 array = congruential.getArray();
@@ -529,16 +557,14 @@ public class Main extends javax.swing.JFrame {
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
                 btnKolmogorov.setVisible(true);
-            } else {
-                if (x < 0 || a < 0 || m < 0 || c < 0) {
-                    JFrame frame = new JFrame("Alerta");
-                    JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
-                            + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
-                }
+            } else if (x < 0 || a < 0 || m < 0 || c < 0) {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                        + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
             }
         }
         if (rdMixedCongruential.isSelected()) {
-            if(!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc){
+            if (!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc) {
                 Congruential cMixed = new Congruential(x, a, c, m);
                 JFrame frame = new JFrame("Alerta");
                 JOptionPane.showMessageDialog(frame, cMixed.hullDobell());
@@ -548,21 +574,19 @@ public class Main extends javax.swing.JFrame {
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
                 btnKolmogorov.setVisible(true);
-            } else {
-                if (x < 0 || a < 0 || m < 0 || c < 0) {
-                    JFrame frame = new JFrame("Alerta");
-                    JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
-                            + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
-                }
+            } else if (x < 0 || a < 0 || m < 0 || c < 0) {
+                JFrame frame = new JFrame("Alerta");
+                JOptionPane.showMessageDialog(frame, "El sistema sólo acepta números enteros y que sean positivos."
+                        + "\nNo se pueden ingresar números mayores a 9,223,327,036,854,775,807.");
             }
         }
-        
+
         // Modelo para poder imprimir en la tabla
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         // Elimina datos anteriores de la tabala
         model.setRowCount(0);
         // Imprime resultado en la tabla
-        if(array != null){
+        if (array != null) {
             for (String[] row : array) {
                 model.addRow(row);
             }
@@ -584,6 +608,17 @@ public class Main extends javax.swing.JFrame {
             txtAlpha.setVisible(false);
             btnChiCuadrada.setVisible(false);
             btnKolmogorov.setVisible(false);
+
+            // ==== text field ====
+            txtX.setText("");
+            txtA.setText("");
+            txtM.setText("");
+            txtC.setText("");
+
+            // Modelo para poder imprimir en la tabla
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            // Elimina datos anteriores de la tabala
+            model.setRowCount(0);
         }
     }//GEN-LAST:event_rdCongruentialActionPerformed
 
@@ -602,12 +637,49 @@ public class Main extends javax.swing.JFrame {
             txtAlpha.setVisible(false);
             btnChiCuadrada.setVisible(false);
             btnKolmogorov.setVisible(false);
+
+            // ==== text field ====
+            txtX.setText("");
+            txtA.setText("");
+            txtM.setText("");
+            txtC.setText("");
+
+            // Modelo para poder imprimir en la tabla
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            // Elimina datos anteriores de la tabala
+            model.setRowCount(0);
         }
     }//GEN-LAST:event_rdMixedCongruentialActionPerformed
 
     private void txtAlphaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlphaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlphaActionPerformed
+
+    private void btnChiCuadradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiCuadradaActionPerformed
+
+        // ####### CHI CUADRADA #######
+        String message = getAlphaValidationMessage();
+        if(message == null){
+            // #### PROGRAMA AQUÍ #####
+        }
+        else{
+            JOptionPane.showMessageDialog(null, message);
+        }
+
+    }//GEN-LAST:event_btnChiCuadradaActionPerformed
+
+    private void btnKolmogorovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKolmogorovActionPerformed
+
+        // ####### KOLMOGOROV #######
+        String message = getAlphaValidationMessage();
+        if(message == null){
+            // #### PROGRAMA AQUÍ #####
+        }
+        else{
+            JOptionPane.showMessageDialog(null, message);
+        }
+
+    }//GEN-LAST:event_btnKolmogorovActionPerformed
 
     /**
      * @param args the command line arguments
@@ -675,4 +747,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txtM;
     private javax.swing.JTextField txtX;
     // End of variables declaration//GEN-END:variables
+
+    private String getAlphaValidationMessage() {
+        String message = "El alpha no es valido. Intenta con 0.2, 0.1, 0.05, 0.02, 0.01, 0.005, 0.002 o 0.001";
+        try {
+            double alpha = Double.parseDouble(txtAlpha.getText());
+            Double [] alphaList = {0.2, 0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001};
+            for(Double posibleAlpha : alphaList){
+                if(alpha ==posibleAlpha){
+                    message = null;
+                }
+            }
+        } catch (NumberFormatException nfe) {
+            message = "La entra de Alpha debe ser un número decimal y no un texto.";
+        }
+        return message;
+    }
 }
