@@ -578,10 +578,16 @@ public class Main extends javax.swing.JFrame {
         if (rdMixedCongruential.isSelected()) {
             if (!(x < 0) && !(a < 0) && !(m < 0) && !(c < 0) && flagx && flaga && flagm && flagc) {
                 congruential = new Congruential(x, a, c, m);
-                JFrame frame = new JFrame("Alerta");
-                JOptionPane.showMessageDialog(frame, congruential.hullDobell());
+                //JFrame frame = new JFrame("Alerta");
+                //JOptionPane.showMessageDialog(frame, congruential.hullDobell());
                 congruential.calculate();
                 array = congruential.getArray();
+                if(array.length==m+1){
+                    JOptionPane.showMessageDialog(null, "Es periodo completo");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No es periodo completo");
+                }
                 lblAlpha.setVisible(true);
                 txtAlpha.setVisible(true);
                 btnChiCuadrada.setVisible(true);
