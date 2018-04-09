@@ -14,7 +14,7 @@ import java.lang.Math;
 public class ChiSquare {
     private double alpha;
     private double[] observedData;
-    private String[][] result, resultTemp;
+    //private String[][] result, resultTemp;
     private double sumFEOi=0;
     private double theoH0;
     private int libertyDegrees;
@@ -22,29 +22,31 @@ public class ChiSquare {
     public ChiSquare(double alpha,double[] observedData){
         this.alpha = alpha;
         this.observedData = observedData;
-        this.result = new String[0][6];
+        //this.result = new String[0][6];
     }
     
-    public void calculate(){
+    public String calculate(){
         int numOfData, classesCeil;
         double max, min, numOfClasses, classRange, classValue, classValue2, mu=0, lambda, FEi, FEOi;
         Arrays.sort(observedData);
         min = observedData[0];
         classValue = min;
         max = observedData[observedData.length-1];
-        numOfData = observedData.length;
+        numOfData = observedData.length+1;
+        System.out.println("Cant datos"+numOfData);
         numOfClasses = 1 + 3.322 * Math.log10(numOfData);
+        System.out.println("Cant clases "+numOfClasses);
         classesCeil = (int) Math.ceil(numOfClasses);
         libertyDegrees = classesCeil - 2;
+        System.out.println("Grados de libertad "+ libertyDegrees);
         classRange = (max-min)/classesCeil;
         classValue2 = classValue + classRange;
-        
-        for(int i = 1; i<=classesCeil;i++){
-            int count = search(classValue,classValue2);
-            pushResult(i, classValue,classValue2,count,count/numOfData);
+        /*for(int i = 1; i<=classesCeil;i++){
+            //int count = search(classValue,classValue2);
+            //pushResult(i, classValue,classValue2,count,count/numOfData);
             classValue=classValue2;
             classValue2+=classRange;
-        }
+        }*/
         
         for(int i=0;i<observedData.length;i++){
             mu+=observedData[i];
@@ -53,37 +55,46 @@ public class ChiSquare {
         lambda=1/mu;
         
         //Revertir para la 1er k
-        classValue = min;
-        classValue2 = classValue + classRange;
+        //classValue = min;
+        //classValue2 = classValue + classRange;
         for(int i = 1; i<=libertyDegrees;i++){
             int count = search(classValue,classValue2);
             FEi = integral(classValue, classValue2, lambda);
             FEOi = Math.pow(FEi-(count/numOfData),2)/FEi;
-            pushResult(i, classValue,classValue2,count,count/numOfData, FEi, FEOi);
+            //pushResult(i, classValue,classValue2,count,count/numOfData, FEi, FEOi);
             classValue=classValue2;
-            if(i==libertyDegrees){
-                classValue2 = observedData[observedData.length];
-            } else{
+            if(i==libertyDegrees-1){
+                classValue2 = observedData[observedData.length-1]+1;
+            } else {
                 classValue2+=classRange;
             }
+            System.out.println("valor a "+classValue);
+            
+            System.out.println("valor b "+classValue2);
+            sumFEOi+=FEOi;
         }
         libertyDegrees-=2;
         getTheoreticalH0(alpha);
+        //System.out.println(theoH0);
+        return "Alpha: "+alpha +"\nValor teórico: "+theoH0+"\n Resultado: "+sumFEOi+ "\n"+isAccepted();
     }
     
     public int search(double a, double b) {
-        double temp=0;
-        int i=0;
-        while(temp<=b){
-            temp = observedData[i];
-            if(temp > a && temp <=b){
-                i++;
+        int i=0, count=0;
+        while(observedData[i]<b){
+            if(observedData[i] >= a && observedData[i] <b){
+                count++;
+            }
+            i++;
+            if(i==observedData.length){
+                i--;
+                b=0;
             }
         }
-        return i;
+        return count;
     }
     
-    private void pushResult(int k, double classMin, double classMax, double FOiABs, double FOiRel) {
+    /*private void pushResult(int k, double classMin, double classMax, double FOiABs, double FOiRel) {
         resultTemp = result;
         int size = resultTemp.length;
         result = new String[size + 1][4];
@@ -125,21 +136,24 @@ public class ChiSquare {
 
     public String[][] getArray() {
         return result;
-    }
+    }*/
 
-    private void printArray() {
-        for (String[] array : result) {
+    //private void printArray() {
+    private String isAccepted(){
+        String h0;
+        /*for (String[] array : result) {
             for (String element : array) {
                 System.out.print(element + "\t");
             }
             System.out.println();
         }
-        System.out.println("Suma (FEi-FOi)^2 / FEi es igual a "+sumFEOi);
+        System.out.println("Suma (FEi-FOi)^2 / FEi es igual a "+sumFEOi);*/
         if(sumFEOi < theoH0){
-            System.out.println("H0 se acepta");
+            h0 = "La hipótesis nula se acepta";
         } else {
-            System.out.println("H0 no se acepta");
+            h0 = "La hipótesis nula no se acepta";
         }
+        return h0;
     }
     
     private double integral(double max, double min, double lambda){
@@ -149,7 +163,8 @@ public class ChiSquare {
     
     private void getTheoreticalH0(double alpha){
         //0.2, 0.1, 0.05, 0.02, 0.01, 0.005, 0.002 o 0.001
-        int alfa = (int)alpha*1000;
+        int alfa = (int) (alpha*1000);
+        System.out.println("Alpha es "+alfa);
         switch(alfa){
             case 200:
                 if(libertyDegrees == 1){
@@ -210,6 +225,8 @@ public class ChiSquare {
                     theoH0 = 34.0266;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 35.1394;
+                } else {
+                    theoH0=1.6424;
                 }
                 break;
             case 100:
@@ -271,6 +288,8 @@ public class ChiSquare {
                     theoH0 = 37.9159;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 39.0875;
+                } else {
+                    theoH0=2.7055;
                 }
                 break;
             case 50:
@@ -332,6 +351,8 @@ public class ChiSquare {
                     theoH0 = 41.3372;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 42.5569;
+                } else {
+                    theoH0 = 3.8415;
                 }
                 break;
             case 20:
@@ -393,6 +414,8 @@ public class ChiSquare {
                     theoH0 = 44.46;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 45.72;
+                } else{
+                    theoH0 = 5.02;
                 }
                 break;
             case 10:
@@ -454,6 +477,8 @@ public class ChiSquare {
                     theoH0 = 48.28;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 49.59;
+                } else {
+                    theoH0 = 6.63;
                 }
                 break;
             case 5:
@@ -515,6 +540,8 @@ public class ChiSquare {
                     theoH0 = 50.99;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 52.34;
+                } else {
+                    theoH0 = 7.88;
                 }
                 break;
             case 2:
@@ -576,6 +603,8 @@ public class ChiSquare {
                     theoH0 = 53.59;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 54.96;
+                } else{
+                    theoH0 = 9.14;
                 }
                 break;
             case 1:
@@ -637,6 +666,8 @@ public class ChiSquare {
                     theoH0 = 56.89;
                 } else if (libertyDegrees == 29) {
                     theoH0 = 58.3;
+                } else {
+                    theoH0 = 10.83;
                 }
                 break;
             default:

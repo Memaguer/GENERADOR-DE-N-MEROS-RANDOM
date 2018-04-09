@@ -149,4 +149,11 @@ public class Congruential {
         }
     }
     
+    public String chiTest(double alpha){
+        double[] data = getColumn(result,4);
+        Arrays.sort(data);
+        ChiSquare chiSquare = new ChiSquare(alpha,data);
+        String resultado = chiSquare.calculate();
+        return resultado;
+    }
 }
