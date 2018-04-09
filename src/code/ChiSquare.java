@@ -389,246 +389,246 @@ public class ChiSquare {
                 break;
             case 10:
                 if(libertyDegrees == 1){
-                    theoH0 = 
+                    theoH0 = 6.63;
                 } else if(libertyDegrees == 2){
-                    theoH0 = 
+                    theoH0 = 9.21;
                 } else if(libertyDegrees == 3){
-                    theoH0 = 
+                    theoH0 = 11.34;
                 } else if (libertyDegrees == 4) {
-                    theoH0 = 
+                    theoH0 = 13.28;
                 } else if (libertyDegrees == 5) {
-                    theoH0 = 
+                    theoH0 = 15.09;
                 } else if (libertyDegrees == 6) {
-                    theoH0 = 
+                    theoH0 = 16.81;
                 } else if (libertyDegrees == 7) {
-                    theoH0 = 
+                    theoH0 = 18.48;
                 } else if (libertyDegrees == 8) {
-                    theoH0 = 
+                    theoH0 = 20.09;
                 } else if (libertyDegrees == 9) {
-                    theoH0 = 
+                    theoH0 = 21.67;
                 } else if (libertyDegrees == 10) {
-                    theoH0 = 
+                    theoH0 = 23.21;
                 } else if (libertyDegrees == 11) {
-                    theoH0 = 
+                    theoH0 = 24.72;
                 } else if (libertyDegrees == 12) {
-                    theoH0 = 
+                    theoH0 = 26.22;
                 } else if (libertyDegrees == 13) {
-                    theoH0 = 
+                    theoH0 = 27.69;
                 } else if (libertyDegrees == 14) {
-                    theoH0 = 
+                    theoH0 = 29.14;
                 } else if (libertyDegrees == 15) {
-                    theoH0 = 
+                    theoH0 = 30.58;
                 } else if (libertyDegrees == 16) {
-                    theoH0 = 
+                    theoH0 = 32;
                 } else if (libertyDegrees == 17) {
-                    theoH0 = 
+                    theoH0 = 33.41;
                 } else if (libertyDegrees == 18) {
-                    theoH0 = 
+                    theoH0 = 34.81;
                 } else if (libertyDegrees == 19) {
-                    theoH0 = 
+                    theoH0 = 36.19;
                 } else if (libertyDegrees == 20) {
-                    theoH0 = 
+                    theoH0 = 37.57;
                 } else if (libertyDegrees == 21) {
-                    theoH0 = 
+                    theoH0 = 38.93;
                 } else if (libertyDegrees == 22) {
-                    theoH0 = 
+                    theoH0 = 40.29;
                 } else if (libertyDegrees == 23) {
-                    theoH0 = 
+                    theoH0 = 41.64;
                 } else if (libertyDegrees == 24) {
-                    theoH0 = 
+                    theoH0 = 42.98;
                 } else if (libertyDegrees == 25) {
-                    theoH0 = 
+                    theoH0 = 44.31;
                 } else if (libertyDegrees == 26) {
-                    theoH0 = 35.5632;
+                    theoH0 = 45.64;
                 } else if (libertyDegrees == 27) {
-                    theoH0 = 
+                    theoH0 = 46.96;
                 } else if (libertyDegrees == 28) {
-                    theoH0 = 
+                    theoH0 = 48.28;
                 } else if (libertyDegrees == 29) {
-                    theoH0 = 
+                    theoH0 = 49.59;
                 }
                 break;
             case 5:
                 if(libertyDegrees == 1){
-                    theoH0 = 
+                    theoH0 = 7.88;
                 } else if(libertyDegrees == 2){
-                    theoH0 = 
+                    theoH0 = 10.6;
                 } else if(libertyDegrees == 3){
-                    theoH0 = 
+                    theoH0 = 12.84;
                 } else if (libertyDegrees == 4) {
-                    theoH0 = 
+                    theoH0 = 14.86;
                 } else if (libertyDegrees == 5) {
-                    theoH0 = 
+                    theoH0 = 16.75;
                 } else if (libertyDegrees == 6) {
-                    theoH0 = 
+                    theoH0 = 18.55;
                 } else if (libertyDegrees == 7) {
-                    theoH0 = 
+                    theoH0 = 20.28;
                 } else if (libertyDegrees == 8) {
-                    theoH0 = 
+                    theoH0 = 21.95;
                 } else if (libertyDegrees == 9) {
-                    theoH0 = 
+                    theoH0 = 23.59;
                 } else if (libertyDegrees == 10) {
-                    theoH0 = 
+                    theoH0 = 25.19;
                 } else if (libertyDegrees == 11) {
-                    theoH0 = 
+                    theoH0 = 26.76;
                 } else if (libertyDegrees == 12) {
-                    theoH0 = 
+                    theoH0 = 28.3;
                 } else if (libertyDegrees == 13) {
-                    theoH0 = 
+                    theoH0 = 29.82;
                 } else if (libertyDegrees == 14) {
-                    theoH0 = 
+                    theoH0 = 31.32;
                 } else if (libertyDegrees == 15) {
-                    theoH0 = 
+                    theoH0 = 32.8;
                 } else if (libertyDegrees == 16) {
-                    theoH0 = 
+                    theoH0 = 34.27;
                 } else if (libertyDegrees == 17) {
-                    theoH0 = 
+                    theoH0 = 35.72;
                 } else if (libertyDegrees == 18) {
-                    theoH0 = 
+                    theoH0 = 37.16;
                 } else if (libertyDegrees == 19) {
-                    theoH0 = 
+                    theoH0 = 38.58;
                 } else if (libertyDegrees == 20) {
-                    theoH0 = 
+                    theoH0 = 40;
                 } else if (libertyDegrees == 21) {
-                    theoH0 = 
+                    theoH0 = 41.4;
                 } else if (libertyDegrees == 22) {
-                    theoH0 = 
+                    theoH0 = 42.8;
                 } else if (libertyDegrees == 23) {
-                    theoH0 = 
+                    theoH0 = 44.18;
                 } else if (libertyDegrees == 24) {
-                    theoH0 = 
+                    theoH0 = 45.56;
                 } else if (libertyDegrees == 25) {
-                    theoH0 = 
+                    theoH0 = 46.93;
                 } else if (libertyDegrees == 26) {
-                    theoH0 = 35.5632;
+                    theoH0 = 48.29;
                 } else if (libertyDegrees == 27) {
-                    theoH0 = 
+                    theoH0 = 49.64;
                 } else if (libertyDegrees == 28) {
-                    theoH0 = 
+                    theoH0 = 50.99;
                 } else if (libertyDegrees == 29) {
-                    theoH0 = 
+                    theoH0 = 52.34;
                 }
                 break;
             case 2:
                 if(libertyDegrees == 1){
-                    theoH0 = 
+                    theoH0 = 9.14;
                 } else if(libertyDegrees == 2){
-                    theoH0 = 
+                    theoH0 = 11.98;
                 } else if(libertyDegrees == 3){
-                    theoH0 = 
+                    theoH0 = 14.32;
                 } else if (libertyDegrees == 4) {
-                    theoH0 = 
+                    theoH0 = 16.42;
                 } else if (libertyDegrees == 5) {
-                    theoH0 = 
+                    theoH0 = 18.38;
                 } else if (libertyDegrees == 6) {
-                    theoH0 = 
+                    theoH0 = 20.24;
                 } else if (libertyDegrees == 7) {
-                    theoH0 = 
+                    theoH0 = 22.04;
                 } else if (libertyDegrees == 8) {
-                    theoH0 = 
+                    theoH0 = 2377;
                 } else if (libertyDegrees == 9) {
-                    theoH0 = 
+                    theoH0 = 25.46;
                 } else if (libertyDegrees == 10) {
-                    theoH0 = 
+                    theoH0 = 27.11;
                 } else if (libertyDegrees == 11) {
-                    theoH0 = 
+                    theoH0 = 28.72;
                 } else if (libertyDegrees == 12) {
-                    theoH0 = 
+                    theoH0 = 30.31;
                 } else if (libertyDegrees == 13) {
-                    theoH0 = 
+                    theoH0 = 31.88;
                 } else if (libertyDegrees == 14) {
-                    theoH0 = 
+                    theoH0 = 33.42;
                 } else if (libertyDegrees == 15) {
-                    theoH0 = 
+                    theoH0 = 34.94;
                 } else if (libertyDegrees == 16) {
-                    theoH0 = 
+                    theoH0 = 36.45;
                 } else if (libertyDegrees == 17) {
-                    theoH0 = 
+                    theoH0 = 37.94;
                 } else if (libertyDegrees == 18) {
-                    theoH0 = 
+                    theoH0 = 39.42;
                 } else if (libertyDegrees == 19) {
-                    theoH0 = 
+                    theoH0 = 40.88;
                 } else if (libertyDegrees == 20) {
-                    theoH0 = 
+                    theoH0 = 42.33;
                 } else if (libertyDegrees == 21) {
-                    theoH0 = 
+                    theoH0 = 43.77;
                 } else if (libertyDegrees == 22) {
-                    theoH0 = 
+                    theoH0 = 45.2;
                 } else if (libertyDegrees == 23) {
-                    theoH0 = 
+                    theoH0 = 46.62;
                 } else if (libertyDegrees == 24) {
-                    theoH0 = 
+                    theoH0 = 48.03;
                 } else if (libertyDegrees == 25) {
-                    theoH0 = 
+                    theoH0 = 49.43;
                 } else if (libertyDegrees == 26) {
-                    theoH0 = 35.5632;
+                    theoH0 = 50.82;
                 } else if (libertyDegrees == 27) {
-                    theoH0 = 
+                    theoH0 = 52.21;
                 } else if (libertyDegrees == 28) {
-                    theoH0 = 
+                    theoH0 = 53.59;
                 } else if (libertyDegrees == 29) {
-                    theoH0 = 
+                    theoH0 = 54.96;
                 }
                 break;
             case 1:
                 if(libertyDegrees == 1){
-                    theoH0 = 
+                    theoH0 = 10.83;
                 } else if(libertyDegrees == 2){
-                    theoH0 = 
+                    theoH0 = 13.82;
                 } else if(libertyDegrees == 3){
-                    theoH0 = 
+                    theoH0 = 16.27;
                 } else if (libertyDegrees == 4) {
-                    theoH0 = 
+                    theoH0 = 18.47;
                 } else if (libertyDegrees == 5) {
-                    theoH0 = 
+                    theoH0 = 20.52;
                 } else if (libertyDegrees == 6) {
-                    theoH0 = 
+                    theoH0 = 22.46;
                 } else if (libertyDegrees == 7) {
-                    theoH0 = 
+                    theoH0 = 24.32;
                 } else if (libertyDegrees == 8) {
-                    theoH0 = 
+                    theoH0 = 26.12;
                 } else if (libertyDegrees == 9) {
-                    theoH0 = 
+                    theoH0 = 27.88;
                 } else if (libertyDegrees == 10) {
-                    theoH0 = 
+                    theoH0 = 29.59;
                 } else if (libertyDegrees == 11) {
-                    theoH0 = 
+                    theoH0 = 31.26;
                 } else if (libertyDegrees == 12) {
-                    theoH0 = 
+                    theoH0 = 32.91;
                 } else if (libertyDegrees == 13) {
-                    theoH0 = 
+                    theoH0 = 34.53;
                 } else if (libertyDegrees == 14) {
-                    theoH0 = 
+                    theoH0 = 36.12;
                 } else if (libertyDegrees == 15) {
-                    theoH0 = 
+                    theoH0 = 37.7;
                 } else if (libertyDegrees == 16) {
-                    theoH0 = 
+                    theoH0 =  39.25;
                 } else if (libertyDegrees == 17) {
-                    theoH0 = 
+                    theoH0 =  40.79;
                 } else if (libertyDegrees == 18) {
-                    theoH0 = 
+                    theoH0 = 42.31;
                 } else if (libertyDegrees == 19) {
-                    theoH0 = 
+                    theoH0 = 43.82;
                 } else if (libertyDegrees == 20) {
-                    theoH0 = 
+                    theoH0 =  45.31;
                 } else if (libertyDegrees == 21) {
-                    theoH0 = 
+                    theoH0 = 46.8;
                 } else if (libertyDegrees == 22) {
-                    theoH0 = 
+                    theoH0 = 48.27;
                 } else if (libertyDegrees == 23) {
-                    theoH0 = 
+                    theoH0 = 49.73;
                 } else if (libertyDegrees == 24) {
-                    theoH0 = 
+                    theoH0 = 51.18;
                 } else if (libertyDegrees == 25) {
-                    theoH0 = 
+                    theoH0 = 52.62;
                 } else if (libertyDegrees == 26) {
-                    theoH0 = 35.5632;
+                    theoH0 = 54.05;
                 } else if (libertyDegrees == 27) {
-                    theoH0 = 
+                    theoH0 = 55.48;
                 } else if (libertyDegrees == 28) {
-                    theoH0 = 
+                    theoH0 = 56.89;
                 } else if (libertyDegrees == 29) {
-                    theoH0 = 
+                    theoH0 = 58.3;
                 }
                 break;
             default:
