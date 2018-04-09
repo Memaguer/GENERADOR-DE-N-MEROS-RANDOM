@@ -72,16 +72,39 @@ public class Congruential {
     }
 
     public String hullDobell() {
+        boolean firstRule = false;
+        boolean secondRule = false;
         String message = "No es periodo completo.";
-        
+        long q = a - 1;
+
+        // ####### FIRST RULE #######
         if (getGCD(c, m) == 1) {
-            long q = a - 1;
-            if (a % q == 1 % q) {
-                if (a % 4 == 1 % 4) {
-                    message = "Es periodo completo.";
+            firstRule = true;
+        }
+
+        // ####### SECOND RULE #######
+        if (firstRule) {
+            long count = q;
+            while (count > 1) {
+                if (q % count == 0) {
+                    if (m % count == 0) {
+                        secondRule = true;
+                    } else {
+                        secondRule = false;
+                        count = 1;
+                    }
                 }
+                count--;
             }
         }
+
+        // ####### THIRD RULE #######
+        if (secondRule) {
+            if (q % 4 == 0 && m % 4 == 0) {
+                message = "Es periodo completo.";
+            }
+        }
+
         return message;
     }
 
