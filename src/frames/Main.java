@@ -110,7 +110,6 @@ public class Main extends javax.swing.JFrame {
         ));
         table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         table.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        table.setShowGrid(false);
         scroll.setViewportView(table);
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
