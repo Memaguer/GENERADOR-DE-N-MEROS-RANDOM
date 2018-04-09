@@ -59,7 +59,7 @@ public class ChiSquare {
         //classValue2 = classValue + classRange;
         for(int i = 1; i<=libertyDegrees;i++){
             int count = search(classValue,classValue2);
-            FEi = integral(classValue, classValue2, lambda);
+            FEi = integral(classValue2, classValue, lambda);
             FEOi = Math.pow(FEi-(count/numOfData),2)/FEi;
             //pushResult(i, classValue,classValue2,count,count/numOfData, FEi, FEOi);
             classValue=classValue2;
@@ -157,7 +157,12 @@ public class ChiSquare {
     }
     
     private double integral(double max, double min, double lambda){
+        System.out.println("Max"+max);
+        System.out.println("Min"+min);
         double result = -Math.exp(-max*lambda)+Math.exp(-min*lambda);
+        System.out.println("Primer parte Integral "+(-Math.exp(-max*lambda)));
+        System.out.println("Segunda parte Integral "+Math.exp(-min*lambda));
+        System.out.println("Integral "+result);
         return result;
     }
     
