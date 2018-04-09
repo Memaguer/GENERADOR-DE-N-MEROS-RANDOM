@@ -15,16 +15,18 @@ public class ChiSquare {
     private double alpha;
     private double[] observedData;
     private String[][] result, resultTemp;
+    private double sumFEOi=0;
+    private double theoH0;
     
     public ChiSquare(double alpha,double[] observedData){
         this.alpha = alpha;
         this.observedData = observedData;
-        this.result = new String[0][4];
+        this.result = new String[0][6];
     }
     
     public void calculate(){
         int numOfData, libertyDegrees, classesCeil;
-        double max, min, numOfClasses, classRange, classValue, classValue2;
+        double max, min, numOfClasses, classRange, classValue, classValue2, mu=0, lambda, FEi;
         Arrays.sort(observedData);
         min = observedData[0];
         classValue = min;
@@ -38,7 +40,25 @@ public class ChiSquare {
         for(int i = 1; i<=classesCeil;i++){
             int count = search(classValue,classValue2);
             pushResult(i, classValue,classValue2,count,count/numOfData);
+            classValue=classValue2;
+            classValue2+=classRange;
         }
+        
+        for(int i=0;i<observedData.length;i++){
+            mu+=observedData[i];
+        }
+        mu=mu/observedData.length;
+        lambda=1/mu;
+        
+        for(int i = 1; i<=libertyDegrees;i++){
+            int count = search(classValue,classValue2);
+            FEi = 
+            pushResult(i, classValue,classValue2,count,count/numOfData);
+            classValue=classValue2;
+            classValue2+=classRange;
+        }
+        
+        getTheoreticalH0(alpha);
     }
     
     public int search(double a, double b) {
@@ -59,12 +79,27 @@ public class ChiSquare {
         result = new String[size + 1][4];
 
         for (int i = 0; i < size; i++) {
-            System.arraycopy(resultTemp[i], 0, result[i], 0, 4);
+            System.arraycopy(resultTemp[i], 0, result[i], 0, 6);
         }
         result[size][0] = k + "";
         result[size][1] = classMin + " - " + classMax;
         result[size][2] = FOiABs + "";
         result[size][3] = FOiRel + "";
+    }
+    private void pushResult(int k, double classMin, double classMax, double FOiABs, double FOiRel, double FEi, double FEOi){
+        resultTemp = result;
+        int size = resultTemp.length;
+        result = new String[size + 1][4];
+
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(resultTemp[i], 0, result[i], 0, 6);
+        }
+        result[size][0] = k + "";
+        result[size][1] = classMin + " - " + classMax;
+        result[size][2] = FOiABs + "";
+        result[size][3] = FOiRel + "";
+        result[size][4] = FEi + "";
+        result[size][5] = FEOi + "";
     }
 
     private boolean isOnArray(long x) {
@@ -88,6 +123,39 @@ public class ChiSquare {
                 System.out.print(element + "\t");
             }
             System.out.println();
+        }
+        System.out.println("Suma (FEi-FOi)^2 / FEi es igual a "+sumFEOi);
+        if(sumFEOi < theoH0){
+            System.out.println("H0 se acepta");
+        } else {
+            System.out.println("H0 no se acepta");
+        }
+    }
+    
+    private double integral(double max, double min, double lambda){
+        //
+    }
+    
+    private void getTheoreticalH0(double alpha){
+        switch(alpha){
+            case 0.5:
+                break;
+            case 0.25:
+                break;
+            case 0.1:
+                break;
+            case 0.05:
+                break;
+            case 0.025:
+                break;
+            case 0.01:
+                break;
+            case 0.005:
+                break;
+            case 0.001:
+                break;
+            default:
+                break;
         }
     }
 }
