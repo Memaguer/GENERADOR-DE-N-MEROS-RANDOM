@@ -135,8 +135,8 @@ public class ChiSquare {
     }
     
     private double integral(double max, double min, double lambda){
-        //
-        return 1.0;
+        double result = -Math.exp(max*lambda)+Math.exp(min*lambda);
+        return result;
     }
     
     private void getTheoreticalH0(double alpha){
